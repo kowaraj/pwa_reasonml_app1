@@ -1,0 +1,16 @@
+####{BSB GENERATED: NO EDIT
+B lib/bs
+FLG -open ReactTemplate
+FLG -ppx '/home/ec2-user/src/pwa_reasonml_app1/reason-app-shell-starter-kit/node_modules/bs-platform/lib/reactjs_jsx_ppx_2.exe'
+FLG -ppx /home/ec2-user/src/pwa_reasonml_app1/reason-app-shell-starter-kit/node_modules/bs-platform/lib/bsppx.exe
+S /home/ec2-user/src/pwa_reasonml_app1/reason-app-shell-starter-kit/node_modules/bs-platform/lib/ocaml
+B /home/ec2-user/src/pwa_reasonml_app1/reason-app-shell-starter-kit/node_modules/bs-platform/lib/ocaml
+FLG -nostdlib -color always
+FLG -w -30-40+6+7+27+32..39+44+45+101
+S /home/ec2-user/src/pwa_reasonml_app1/reason-app-shell-starter-kit/node_modules/reason-react/lib/ocaml
+B /home/ec2-user/src/pwa_reasonml_app1/reason-app-shell-starter-kit/node_modules/reason-react/lib/ocaml
+S /home/ec2-user/src/pwa_reasonml_app1/reason-app-shell-starter-kit/node_modules/re-classnames/lib/ocaml
+B /home/ec2-user/src/pwa_reasonml_app1/reason-app-shell-starter-kit/node_modules/re-classnames/lib/ocaml
+S src
+B lib/bs/src
+####BSB GENERATED: NO EDIT}
