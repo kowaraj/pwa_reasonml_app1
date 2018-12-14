@@ -1,7 +1,7 @@
 let component = ReasonReact.statelessComponent("Home");
 
 let html = {|
-  <h1>Home</h1>
+  <h1>Homex</h1>
   <p>This is a simple App Shell starter kit that you can use to get started building your <a target="_blank" href="https://developers.google.com/web/progressive-web-apps/">PWA</a> with the power of <a target="_blank" href="https://reasonml.github.io">Reason</a> and <a target="_blank" href="https://reasonml.github.io/reason-react/">ReasonReact</a>.</p>
   <p>Read the <a target="_blank" href="">tutorial for this App Shell starter kit on Medium</a>.</p>
   <p>Get the source on <a target="_blank" href="">Github</a>.</p>
@@ -24,5 +24,9 @@ let html = {|
 let make = _children => {
   ...component,
   render: _self =>
-    <div className="Home" dangerouslySetInnerHTML={"__html": html} />
+    <div>
+      <ToDoApp2 />
+    </div>
+      
+//    <div className="Home" dangerouslySetInnerHTML={"__html": html} />
 };
