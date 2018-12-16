@@ -23,20 +23,49 @@ module ToDoItem = {
   };
 };
 
+let valueFromEvent = (evt) : string => (
+  evt
+  |> ReactEventRe.Form.target
+  |> ReactDOMRe.domElementToObj
+)##value;
+
+module Input = {
+  type state = string;
+  let component = ReasonReact.reducerComponent("Input");
+  let make = (~onSubmit, _) => {
+    ...component,
+    initialState: () => "",
+    reducer: (newText, _text) => ReasonReact.Update(newText),
+    render: ({state: text, send}) =>
+      <input
+        value=text
+        type_="text"
+        placeholder="Write something to do"
+        onChange=((evt) => send(valueFromEvent(evt)))
+        onKeyDown=((evt) =>
+          if (ReactEventRe.Keyboard.key(evt) == "Enter") {
+            onSubmit(text);
+            send("")
+          }
+        )
+      />
+  }
+};
+  
 type state = {
   items: list(item)
 };
 
 type action =
-  | AddItem
+  | AddItem(string)
   | ToggleItem(int);
 
 let component = ReasonReact.reducerComponent("ToDoApp2");
 
 let lastId = ref(0);
-let newItem = () => {
+let newItem = (text) => {
   lastId := lastId^ + 1;
-  {id: lastId^, title: "A new item", completed: false}
+  {id: lastId^, title: text, completed: false}
 };
 
 let make = (children) => {
@@ -48,7 +77,7 @@ let make = (children) => {
   },
   reducer: ( action, {items} ) => {
     switch (action) {
-      | AddItem =>  ReasonReact.Update({items: [newItem(), ...items]})
+      | AddItem(text) =>  ReasonReact.Update({items: [newItem(text), ...items]})
       | ToggleItem(id) =>
           let items = List.map( (item) => item.id === id ? 
                                             {...item, completed: ! item.completed} :
@@ -62,12 +91,10 @@ let make = (children) => {
     let numItems = List.length(self.state.items);
     let onToggle = () => ();
     <div className="app">
-      <div className="title">  (str("What to do 2")) </div>
-
-      <button
-          onClick=((e) => self.send(AddItem)) >
-          (str("Add something"))
-      </button>
+      <div className="title">
+          (str("What to do 2"))
+          <Input onSubmit=((text) => self.send(AddItem(text))) />            
+      </div>
 
       <div className="items">
           
@@ -82,7 +109,8 @@ let make = (children) => {
 
       </div>
       
-      <div className="footer"> (str(string_of_int(numItems) ++ " items"))      </div>
+      <div className="footer"> (str(string_of_int(numItems) ++ " items"))
+      </div>
     </div>
   }
 };
