@@ -25,7 +25,7 @@ let make = _children => {
   ...component,
   render: _self =>
     <div>
-      <ToDoApp2 />
+      <ToDoApp3 />
     </div>
       
 //    <div className="Home" dangerouslySetInnerHTML={"__html": html} />
